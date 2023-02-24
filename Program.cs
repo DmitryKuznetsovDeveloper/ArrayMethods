@@ -1,7 +1,7 @@
 ﻿// Решение задач с одномерным массивом
 
 //Перебор массива
-int[] myArray = new int[10] { 1, 2, 3, 4, 5, -1, 7, 8, 9, 11 };
+int[] myArray = new int[10] { 1, 2, 1, 4, 5, 1, 5, 8, 9, 25 };
 int[] myArrayTwo = new int[10] { 1, 2, 3, 4, 5, -1, 7, 8, 9, 11 };
 //Выводит все элементы массива.
 void PrintArray(int[] myArray)
@@ -146,6 +146,75 @@ int[] CreatingSharedArray(int[] myArray, int[] myArrayTwo)
     return newMyArray;
 }
 
-int[] newMyArray = new int[] { };
-newMyArray = CreatingSharedArray(myArray, myArrayTwo);
-PrintArray(newMyArray);
+// Нахождения максимальных и минимальных элементов в массиве 
+
+// Нахождение максимально элемента массива
+int MaxSearchElementArray(int[] array)
+{
+    int maxValue = 0;
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (maxValue < array[i]) maxValue = array[i];
+    }
+    return maxValue;
+}
+
+// Нахождение минимального элемента массива
+int MinSearchElementArray(int[] array)
+{
+    int minValue = array[0];
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (minValue > array[i]) minValue = array[i];
+    }
+    return minValue;
+}
+
+// Нахождение второго минимального элемента массива
+int MinSearchTwoElementArray(int[] array)
+{
+    int minValue = array[0], minValueTwo = array[1];
+    if (minValueTwo < minValue)
+    {
+        minValue = minValueTwo;
+        minValueTwo = array[0];
+    }
+    for (int i = 2; i < array.Length; i++)
+    {
+        if (minValue > array[i])
+        {
+            minValueTwo = minValue;
+            minValue = array[i];
+        }
+        if (minValueTwo > array[i] && array[i] != minValue)
+        {
+            minValueTwo = array[i];
+        }
+    }
+    return minValueTwo;
+}
+
+// Нахождение второго максимального элемента массива
+int MaxSearchTwoElementArray(int[] array)
+{
+    int maxValue = array[0], maxValueTwo = array[1];
+    if (maxValueTwo > maxValue)
+    {
+        maxValue = maxValueTwo;
+        maxValueTwo = array[0];
+    }
+    for (int i = 2; i < array.Length; i++)
+    {
+        if (maxValue < array[i])
+        {
+            maxValueTwo = maxValue;
+            maxValue = array[i];
+        }
+        if (maxValueTwo < array[i] && array[i] != maxValue)
+        {
+            maxValueTwo = array[i];
+        }
+    }
+    return maxValueTwo;
+}
+
